@@ -1,0 +1,12 @@
+
+.main-header {
+    margin: 0,0,25 rem, 0
+}
+
+.container {
+    flex: 1 0 auto;
+    width: 960px;
+    margin-top: 25px;
+    padding: 28px;
+    border-radius: 25px;
+}
