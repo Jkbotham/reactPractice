@@ -24,6 +24,13 @@ function mainPage() {
     return (
         <div>
             <Header />
+            <Container>
+                <Row>
+                    <Col>
+                    <h1> Main Page </h1>
+                    </Col>
+                </Row>
+            </Container>
             
         </div>
     )
