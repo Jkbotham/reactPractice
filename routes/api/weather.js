@@ -2,7 +2,7 @@ const router = require("express").Router();
 const axios = require("axios");
 
 
-
+const weatherApi = process.env.WEATHER_API_KEY
 // const town = "Minneapolis"
 
 router.get("/:town", (req, res) => {
@@ -16,7 +16,6 @@ router.get("/:town", (req, res) => {
         console.log(y.data)
         res.json(y.data)
     }
-
     weather();
 });
 

@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const routes = require("./routes");
 const logger = require("morgan");
-require("dotenv").config();
 const session = require("express-session");
+
 
 
 const app = express();
@@ -48,6 +49,8 @@ mongoose.connect(
     next();
   });
   
+  console.log(process.env)
+
   app.listen(port, () => {
     console.log('Server running on port ' + port)
   });
