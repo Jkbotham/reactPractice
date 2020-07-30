@@ -9,7 +9,7 @@ function Weather() {
 
     async function getWeather(){
         const weatherData = await api.weather();
-        console.log(weatherData.data, "This Thought")
+        // console.log(weatherData.data, "This Thought")
         setWeather(weatherData.data)
         console.log(weather)
      }
@@ -19,7 +19,9 @@ function Weather() {
         getWeather();
     },[])
 
-
+    useEffect(() => {
+        console.log(weather)
+    },[weather])
     
     return (
         <div>

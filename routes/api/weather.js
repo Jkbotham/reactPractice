@@ -2,7 +2,7 @@ const router = require("express").Router();
 const axios = require("axios");
 
 
-const weatherApi = "ffb6baedd502c2b85f5529aeaf64b272"
+
 // const town = "Minneapolis"
 
 router.get("/:town", (req, res) => {
