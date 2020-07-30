@@ -4,6 +4,8 @@ const path = require("path");
 const routes = require("./routes");
 const logger = require("morgan");
 require("dotenv").config();
+const session = require("express-session");
+
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -11,7 +13,9 @@ const port = process.env.PORT || 3001;
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
- 
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"))
 }

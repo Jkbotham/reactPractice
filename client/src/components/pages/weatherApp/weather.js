@@ -1,8 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../header/header";
 import { Row, Button, Col, Container, Jumbotron } from "react-bootstrap";
+import api from "../../../utils/api"
 
-function weather() {
+function Weather() {
+
+    const [weather, setWeather] = useState();
+
+    async function getWeather(){
+        const weatherData = await api.weather();
+        console.log(weatherData.data, "This Thought")
+        setWeather(weatherData.data)
+        console.log(weather)
+     }
+
+
+    useEffect(() => {
+        getWeather();
+    },[])
+
+
+    
     return (
         <div>
             <Header />
@@ -20,4 +38,4 @@ function weather() {
     )
 }
 
-export default weather;
+export default Weather;

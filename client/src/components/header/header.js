@@ -15,7 +15,7 @@ function Header() {
         <Nav.Link href="/">Home</Nav.Link>
         {/* <Nav.Link href="/about-us">Contact Us</Nav.Link>
         <Nav.Link href="/contact-us">About Us</Nav.Link> */}
-        <NavDropdown title="" id="collasible-nav-dropdown">
+        <NavDropdown title="" id="nav-dropdown-align-right">
         <NavDropdown.Item href="/weatherApp">WeatherApp</NavDropdown.Item>
         {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
