@@ -3,8 +3,7 @@ import Header from "../../header/header";
 import { Row, Button, Col, Container, Jumbotron, Card } from "react-bootstrap";
 import api from "../../../utils/api"
 import "./weather.css"
-import weatherFunction from "./weatherFunctions"
-import weatherNow from "./weatherProps/now"
+import WeatherNow from "./weatherProps/now"
 
 function Weather() {
 
@@ -17,7 +16,7 @@ function Weather() {
     const [lat, setLat] = useState();
     const [lon, setLong] = useState();
 
-    const weatherIcon = apiResponse ? "http://openweathermap.org/img/wn/" + apiResponse.weather.current.weather[0].icon + "@4x.png" : null
+
 
 
     //=====================================================
@@ -69,27 +68,14 @@ function Weather() {
     }, [lon || lat])
 
     useEffect(() => {
-        console.log(apiResponse)
-        if(apiResponse) { 
-            console.log(apiResponse.local.principalSubdivisionCode.split("-"))
-        }
+        // console.log(apiResponse)
     }, [apiResponse])
 
     //=====================================================
     // Style
     //=====================================================
 
-    const style = {
-        h1: {
-            margin: 0,
-            justifyContent: "center"
-        },
-        card: {
-            width: "95%",
-            margin: "auto",
-            borderRadius: "100px"
-        }
-    }
+
 
     //=====================================================
 
@@ -102,34 +88,10 @@ function Weather() {
                 <Row>
                     <Col>
                         <Jumbotron fluid>
-                            <h1 style={style.h1}>Weather App</h1>
-
-                            <p>This will be a simple weather application!</p>
 
                             {apiResponse ?
                                 <div>
-
-                                    <Card style={style.card} className="text-center rounded Card cardWidth">
-                                        <Card.Body>
-                                            <Row className="my-auto">
-                                                <Col className="text-left">
-
-                                                    <p className="city">{apiResponse.local.city}, {apiResponse.local.principalSubdivisionCode.split("-")[1]} </p>
-                                                    <span className="temp">{apiResponse.weather.current.temp.toFixed()}°</span>
-                                                    <p className="condition">{weatherFunction.capitalize(apiResponse.weather.current.weather[0].description)} </p>
-
-                                                </Col>
-                                                <Col className="text-center">
-
-                                                    <img alt="Weather Icon" className="responsiveIMG" src={weatherIcon}></img>
-                                                    <p className="highLow">{apiResponse.weather.daily[0].temp.max.toFixed()}° / {apiResponse.weather.daily[0].temp.min.toFixed()}°</p>
-
-                                                </Col>
-                                            </Row>
-
-
-                                        </Card.Body>
-                                    </Card>
+                                    <WeatherNow data={apiResponse} />
                                 </div>
 
                                 :
