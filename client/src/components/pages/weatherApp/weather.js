@@ -4,6 +4,7 @@ import { Row, Button, Col, Container, Jumbotron, Card } from "react-bootstrap";
 import api from "../../../utils/api"
 import "./weather.css"
 import weatherFunction from "./weatherFunctions"
+import weatherNow from "./weatherProps/now"
 
 function Weather() {
 
@@ -12,11 +13,11 @@ function Weather() {
     // States and Variables
     //=====================================================
 
-    const [weather, setWeather] = useState();
+    const [apiResponse, setApiResponse] = useState();
     const [lat, setLat] = useState();
     const [lon, setLong] = useState();
 
-    const weatherIcon = weather ? "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@4x.png" : null
+    const weatherIcon = apiResponse ? "http://openweathermap.org/img/wn/" + apiResponse.weather.current.weather[0].icon + "@4x.png" : null
 
 
     //=====================================================
@@ -25,20 +26,17 @@ function Weather() {
 
     async function getWeather() {
 
-        // Weather By Cord
-        console.log(lat, lon);
+        // Weather By Cords
         const weatherByCords = await api.weatherByCords(lat, lon);
-        console.log("Weather by Cords ", weatherByCords.data)
-        setWeather(weatherByCords.data)
+        console.log("Weather by Cords ", weatherByCords.data);
+        setApiResponse(weatherByCords.data)
         //Weather By City
 
         // const city = "Plymouth"
         // const weatherByCity = await api.weatherByCity(city);
         // setWeather(weatherByCity.data)
         // console.log("Weather by city" + weatherByCity.data)
-
     }
-
 
     //=====================================================
     //  Use Effects
@@ -46,23 +44,21 @@ function Weather() {
 
 
     useEffect(() => {
-        async function start() {
+        async function load() {
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                console.log("Latitude is :", position.coords.latitude);
-                console.log("Longitude is :", position.coords.longitude);
-
+                // console.log("Latitude is :", position.coords.latitude);
+                // console.log("Longitude is :", position.coords.longitude);
                 setLat(position.coords.latitude);
                 setLong(position.coords.longitude);
-
             });
 
         }
-        start();
+        load();
     }, [])
 
     useEffect(() => {
-        console.log("Cords", lat, lon)
+        // console.log("Cords", lat, lon)
 
         if (lon & lat) {
             getWeather();
@@ -73,9 +69,11 @@ function Weather() {
     }, [lon || lat])
 
     useEffect(() => {
-        console.log(weather)
-
-    }, [weather])
+        console.log(apiResponse)
+        if(apiResponse) { 
+            console.log(apiResponse.local.principalSubdivisionCode.split("-"))
+        }
+    }, [apiResponse])
 
     //=====================================================
     // Style
@@ -108,30 +106,29 @@ function Weather() {
 
                             <p>This will be a simple weather application!</p>
 
-                            {weather ?
+                            {apiResponse ?
                                 <div>
 
                                     <Card style={style.card} className="text-center rounded Card cardWidth">
                                         <Card.Body>
                                             <Row className="my-auto">
                                                 <Col className="text-left">
-                                                    <p className="city">{weather.name} </p>
-                                                    <span className="temp">{weather.main.temp}°</span>
 
-                                                    <p className="condition">{weatherFunction.capitalize(weather.weather[0].description)} </p>
-
+                                                    <p className="city">{apiResponse.local.city}, {apiResponse.local.principalSubdivisionCode.split("-")[1]} </p>
+                                                    <span className="temp">{apiResponse.weather.current.temp.toFixed()}°</span>
+                                                    <p className="condition">{weatherFunction.capitalize(apiResponse.weather.current.weather[0].description)} </p>
 
                                                 </Col>
                                                 <Col className="text-center">
+
                                                     <img alt="Weather Icon" className="responsiveIMG" src={weatherIcon}></img>
-                                                    <p className="highLow">{weather.main.temp_max}° / {weather.main.temp_min}°</p>
+                                                    <p className="highLow">{apiResponse.weather.daily[0].temp.max.toFixed()}° / {apiResponse.weather.daily[0].temp.min.toFixed()}°</p>
 
                                                 </Col>
                                             </Row>
 
 
                                         </Card.Body>
-                                        <Card.Footer className="text-muted">2 days ago</Card.Footer>
                                     </Card>
                                 </div>
 

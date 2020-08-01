@@ -7,14 +7,12 @@ const weatherApi = process.env.WEATHER_API_KEY
 
 router.get("/city/:city", (req, res) => {
 
-
     console.log("City being received ", req.params.city)
     async function weatherByCity() {
 
         const town = req.params.city
         const y = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + town + "&appid=" + weatherApi)
 
-        
         console.log(y.data)
         res.json(y.data)
     }
@@ -23,21 +21,21 @@ router.get("/city/:city", (req, res) => {
 
 router.get("/cords/:lat/:lon", (req, res) => {
 
-    async function weatherByCords() {
-        // console.log(req.params)
-        console.log("24 - Weather.js " + " lon " + req.params.lon + " Lat " + req.params.lat)
+    async function weather() {
         const lon = req.params.lon
         const lat = req.params.lat
 
-        const response = await axios.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + weatherApi) .catch(err => { console.log(err)})
-        console.log("Lat and lon response", response.data)
-
-        res.json(response.data)
-        
+        const weatherResponse = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + weatherApi).catch(err => { console.log(err) })
+        const localData = await axios.get("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat + "&longitude=" + lon + "&localityLanguage=en")
+        const response = {
+            weather: weatherResponse.data,
+            local: localData.data
+        }
+        // console.log(response)
+        res.json(response)
     }
-
-        weatherByCords();
-
+    weather();
 })
+
 
 module.exports = router;
