@@ -1,9 +1,41 @@
 .Card {
     border-radius: 20px !important;
-    /* background-color: black;
-    color: white */
 }
-
+.cardWidth {
+    max-width: 850px;
+}
 p {
     size: 100px;
+}
+
+.temp {
+    font-size: 8rem;
+    font-weight: 500;
+    margin-top: 0rem;
+    line-height: 95px;
+}
+
+.condition {
+    margin: 18px 0 0 0;
+
+}
+.city, .condition, .highLow {
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+div.card-body{ 
+    padding: 10px;
+}
+
+.responsiveIMG {
+    width: auto;
+    height: auto;
+    max-height: 175px;
+}
+
+.text-left {
+    text-align: left !important;
+}
+.text-center {
+    text-align: center !important;
 }

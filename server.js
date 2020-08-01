@@ -48,8 +48,6 @@ mongoose.connect(
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-  
-  console.log(process.env)
 
   app.listen(port, () => {
     console.log('Server running on port ' + port)

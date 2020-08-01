@@ -3,27 +3,83 @@ import Header from "../../header/header";
 import { Row, Button, Col, Container, Jumbotron, Card } from "react-bootstrap";
 import api from "../../../utils/api"
 import "./weather.css"
+import weatherFunction from "./weatherFunctions"
 
 function Weather() {
 
+
+    //=====================================================
+    // States and Variables
+    //=====================================================
+
     const [weather, setWeather] = useState();
-
-
-    async function getWeather() {
-        const weatherData = await api.weather();
-        // console.log(weatherData.data, "This Thought")
-        setWeather(weatherData.data)
-        console.log(weather)
-    }
+    const [lat, setLat] = useState();
+    const [lon, setLong] = useState();
 
     const weatherIcon = weather ? "http://openweathermap.org/img/wn/" + weather.weather[0].icon + "@4x.png" : null
+
+
+    //=====================================================
+    // Functions
+    //=====================================================
+
+    async function getWeather() {
+
+        // Weather By Cord
+        console.log(lat, lon);
+        const weatherByCords = await api.weatherByCords(lat, lon);
+        console.log("Weather by Cords ", weatherByCords.data)
+        setWeather(weatherByCords.data)
+        //Weather By City
+
+        // const city = "Plymouth"
+        // const weatherByCity = await api.weatherByCity(city);
+        // setWeather(weatherByCity.data)
+        // console.log("Weather by city" + weatherByCity.data)
+
+    }
+
+
+    //=====================================================
+    //  Use Effects
+    //=====================================================
+
+
     useEffect(() => {
-        getWeather();
+        async function start() {
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("Latitude is :", position.coords.latitude);
+                console.log("Longitude is :", position.coords.longitude);
+
+                setLat(position.coords.latitude);
+                setLong(position.coords.longitude);
+
+            });
+
+        }
+        start();
     }, [])
 
     useEffect(() => {
+        console.log("Cords", lat, lon)
+
+        if (lon & lat) {
+            getWeather();
+        } else {
+            return
+        }
+
+    }, [lon || lat])
+
+    useEffect(() => {
         console.log(weather)
+
     }, [weather])
+
+    //=====================================================
+    // Style
+    //=====================================================
 
     const style = {
         h1: {
@@ -37,6 +93,9 @@ function Weather() {
         }
     }
 
+    //=====================================================
+
+    //=====================================================
 
     return (
         <div>
@@ -52,38 +111,21 @@ function Weather() {
                             {weather ?
                                 <div>
 
-                                    <h2>{weather.name}</h2>
-                                    <h2>{weather.main.temp}</h2>
-                                    <p>Feels Like: {weather.main.feels_like}</p>
-                                    <p>Humidity: {weather.main.humidity}</p>
-
-
-                                    <Card style={style.card} className="text-center rounded Card">
+                                    <Card style={style.card} className="text-center rounded Card cardWidth">
                                         <Card.Body>
-                                            <Row>
+                                            <Row className="my-auto">
                                                 <Col className="text-left">
-                                                    <Card.Title>{weather.name}</Card.Title>
+                                                    <p className="city">{weather.name} </p>
+                                                    <span className="temp">{weather.main.temp}°</span>
 
-                                                    <br></br>
-                                                    <h3> Temp {weather.main.temp}°</h3>
-                                                    <p>Feels Like: {weather.main.feels_like}</p>
-                                                    <p>Humidity: {weather.main.humidity}</p>
-                                                    <br></br>
-                                                    <Row>
-                                                        <Col>
-                                                            <p> Wind </p>
-                                                            <p>{weather.wind.speed}</p>
-                                                        </Col>
-                                                        <Col>
-                                                            <p>Gusts</p>
-                                                            <p>{weather.wind.gust}</p>
-                                                        </Col>
-                                                    </Row>
+                                                    <p className="condition">{weatherFunction.capitalize(weather.weather[0].description)} </p>
+
 
                                                 </Col>
-                                                <Col>
-                                                    <h3>{weather.weather[0].description} </h3>
-                                                    <img alt="Weather Icon" src={weatherIcon}></img>
+                                                <Col className="text-center">
+                                                    <img alt="Weather Icon" className="responsiveIMG" src={weatherIcon}></img>
+                                                    <p className="highLow">{weather.main.temp_max}° / {weather.main.temp_min}°</p>
+
                                                 </Col>
                                             </Row>
 
@@ -104,6 +146,26 @@ function Weather() {
             </Container>
         </div>
     )
+
+    {/* <p>Feels Like: {weather.main.feels_like}°</p> */ }
+    {/* <p>Humidity: {weather.main.humidity}</p>s */ }
+    {/* <Row>
+                                                        <Col>
+                                                            <p> Wind </p>
+                                                            <p>{weatherFunction.windDirection(weather.wind.deg)} {weather.wind.speed} mph</p>
+                                                        </Col>
+                                                        {weather.wind.gust ?
+                                                            <Col>
+                                                                <p>Gusts</p>
+                                                                <p>{weather.wind.gust}</p>
+                                                            </Col>
+                                                            :
+                                                            <> </>
+                                                        }
+
+                                                    </Row> */}
 }
 
 export default Weather;
+
+
