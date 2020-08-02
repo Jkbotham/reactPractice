@@ -13,7 +13,6 @@ function Weather() {
     //=====================================================
 
     const [apiResponse, setApiResponse] = useState();
-    const [zipResponse, setZipResponse] = useState();
     const [lat, setLat] = useState();
     const [lon, setLong] = useState();
     const [zipSearch, setZipSearch] = useState();
@@ -33,8 +32,7 @@ function Weather() {
                 console.log("Weather by Cords ", weatherByCords.data);
                 setApiResponse(weatherByCords.data)
             }
-        }
-        else {
+        }else {
             const weatherByZip = await api.weatherByZip(zipSearch)
             console.log(weatherByZip);
             setApiResponse(weatherByZip.data);
@@ -43,7 +41,6 @@ function Weather() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(e)
         getWeather();
     }
 
@@ -52,18 +49,13 @@ function Weather() {
     //=====================================================
 
 
-    useEffect(() => {
-        async function load() {
-
+    useEffect( async () => {
             navigator.geolocation.getCurrentPosition(function (position) {
                 // console.log("Latitude is :", position.coords.latitude);
                 // console.log("Longitude is :", position.coords.longitude);
                 setLat(position.coords.latitude);
                 setLong(position.coords.longitude);
             });
-
-        }
-        load();
     }, [])
 
     useEffect(() => {
@@ -113,10 +105,8 @@ function Weather() {
 
                                         <p>No Weather to report</p>
                                     }
-
                                 </Col>
                             </Row>
-
                         </Jumbotron>
                     </Col>
                 </Row>
