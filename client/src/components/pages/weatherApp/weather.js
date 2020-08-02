@@ -27,12 +27,14 @@ function Weather() {
 
     async function getWeather() {
         // Weather By Cords
-
-        if(lon && lat ){
-            const weatherByCords = await api.weatherByCords(lat, lon);
-            console.log("Weather by Cords ", weatherByCords.data);
-            setApiResponse(weatherByCords.data)
-        }else { 
+        if (!zipSearch) {
+            if (lon && lat) {
+                const weatherByCords = await api.weatherByCords(lat, lon);
+                console.log("Weather by Cords ", weatherByCords.data);
+                setApiResponse(weatherByCords.data)
+            }
+        }
+        else {
             const weatherByZip = await api.weatherByZip(zipSearch)
             console.log(weatherByZip);
             setApiResponse(weatherByZip.data);
@@ -94,7 +96,7 @@ function Weather() {
                         <Jumbotron fluid>
                             <Row>
                                 <Col className="searchBarCol">
-                                    <Form inline className="text-right" onSubmit={e=>handleSubmit(e)}>
+                                    <Form inline className="text-right" onSubmit={e => handleSubmit(e)}>
                                         <FormControl onChange={e => setZipSearch(e.target.value)} type="text" placeholder="Zip Code" className=" mr-sm-2" />
                                         <Button type="submit">Submit</Button>
                                     </Form>
