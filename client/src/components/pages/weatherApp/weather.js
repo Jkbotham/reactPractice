@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../header/header";
-import { Row, Button, Col, Container, Jumbotron, Card } from "react-bootstrap";
+import { Row, Button, Col, Container, Jumbotron, Card, Form, FormControl } from "react-bootstrap";
 import api from "../../../utils/api"
 import "./weather.css"
 import WeatherNow from "./weatherProps/now"
@@ -13,8 +13,10 @@ function Weather() {
     //=====================================================
 
     const [apiResponse, setApiResponse] = useState();
+    const [zipResponse, setZipResponse] = useState();
     const [lat, setLat] = useState();
     const [lon, setLong] = useState();
+    const [zipSearch, setZipSearch] = useState();
 
 
 
@@ -24,17 +26,23 @@ function Weather() {
     //=====================================================
 
     async function getWeather() {
-
         // Weather By Cords
-        const weatherByCords = await api.weatherByCords(lat, lon);
-        console.log("Weather by Cords ", weatherByCords.data);
-        setApiResponse(weatherByCords.data)
-        //Weather By City
 
-        // const city = "Plymouth"
-        // const weatherByCity = await api.weatherByCity(city);
-        // setWeather(weatherByCity.data)
-        // console.log("Weather by city" + weatherByCity.data)
+        if(lon && lat ){
+            const weatherByCords = await api.weatherByCords(lat, lon);
+            console.log("Weather by Cords ", weatherByCords.data);
+            setApiResponse(weatherByCords.data)
+        }else { 
+            const weatherByZip = await api.weatherByZip(zipSearch)
+            console.log(weatherByZip);
+            setApiResponse(weatherByZip.data);
+        }
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(e)
+        getWeather();
     }
 
     //=====================================================
@@ -57,25 +65,21 @@ function Weather() {
     }, [])
 
     useEffect(() => {
-        // console.log("Cords", lat, lon)
-
         if (lon & lat) {
             getWeather();
         } else {
             return
         }
-
     }, [lon || lat])
 
     useEffect(() => {
         // console.log(apiResponse)
+        console.log(zipSearch)
+    }, [zipSearch])
+
+    useEffect(() => {
+
     }, [apiResponse])
-
-    //=====================================================
-    // Style
-    //=====================================================
-
-
 
     //=====================================================
 
@@ -88,16 +92,28 @@ function Weather() {
                 <Row>
                     <Col>
                         <Jumbotron fluid>
+                            <Row>
+                                <Col className="searchBarCol">
+                                    <Form inline className="text-right" onSubmit={e=>handleSubmit(e)}>
+                                        <FormControl onChange={e => setZipSearch(e.target.value)} type="text" placeholder="Zip Code" className=" mr-sm-2" />
+                                        <Button type="submit">Submit</Button>
+                                    </Form>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {apiResponse ?
+                                        <div>
+                                            <WeatherNow data={apiResponse} />
+                                        </div>
 
-                            {apiResponse ?
-                                <div>
-                                    <WeatherNow data={apiResponse} />
-                                </div>
+                                        :
 
-                                :
+                                        <p>No Weather to report</p>
+                                    }
 
-                                <p>No Weather to report</p>
-                            }
+                                </Col>
+                            </Row>
 
                         </Jumbotron>
                     </Col>

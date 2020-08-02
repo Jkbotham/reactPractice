@@ -46,5 +46,14 @@ export default {
             CapitalizedWords.push(obj[0].toUpperCase() + obj.slice(1, obj.length))
         })
         return CapitalizedWords.join(" ");
-    }
+    },
+
+    getTime : (time) => {
+        const dt = new Date(time*1000);
+        const hr = dt.getHours();
+        const m = "0" + dt.getMinutes();
+        const s = "0" + dt.getSeconds();
+        const date = dt.getDate();
+        return date + " " + hr + ":" + m.substr(-2) + ":" + s.substr(-2);
+        }
 }

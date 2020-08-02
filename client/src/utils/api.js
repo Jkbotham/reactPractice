@@ -8,5 +8,9 @@ export default {
 
     weatherByCords: (lat, lon) => {
         return axios.get("/api/weather/cords/" + lat + "/" + lon)
+    },
+
+    weatherByZip: (zip) => {
+        return axios.get("/api/weather/zipcode/" + zip)
     }
 }
