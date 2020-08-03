@@ -70,7 +70,7 @@ export default {
         }
     },
 
-    temperature: (temp) => {
+    temp: (temp) => {
         return temp.toFixed() + "°"
     },
 

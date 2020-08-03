@@ -1,7 +1,7 @@
 import React from "react";
 import "../weather.css";
 import { Row, Col, Card } from "react-bootstrap";
-import weatherFunction from "../weatherFunctions";
+import wx from "../weatherFunctions";
 
 function Now({ data }) {
     return (
@@ -13,14 +13,14 @@ function Now({ data }) {
 
                         <Col className="text-left">
                             <p className="city">{data.local.city}, {data.local.principalSubdivisionCode.split("-")[1]} </p>
-                            <p className="condition">{weatherFunction.capitalize(data.weather.current.weather[0].description)} </p>
-                            <span className="temp">{data.weather.current.temp.toFixed()}°</span>
-                            <p className="feelsLike">Feels like {weatherFunction.temperature(data.weather.current.feels_like)}</p>
+                            <p className="condition">{wx.capitalize(data.weather.current.weather[0].description)} </p>
+                            <span className="temp">{wx.temp(data.weather.current.temp)}</span>
+                            <p className="feelsLike">Feels like {wx.temp(data.weather.current.feels_like)}</p>
                         </Col>
 
                         <Col className="text-center">
-                            <img alt="Weather Icon" className="responsiveIMG" src={weatherFunction.weatherIcon(data.weather.current.weather[0].icon, "large")}></img>
-                            <p className="highLow">{data.weather.daily[0].temp.max.toFixed()}° / {data.weather.daily[0].temp.min.toFixed()}°</p>
+                            <img alt="Weather Icon" className="responsiveIMG" src={wx.weatherIcon(data.weather.current.weather[0].icon, "large")}></img>
+                            <p className="highLow">{wx.temp(data.weather.daily[0].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                         </Col>
 
                     </Row>

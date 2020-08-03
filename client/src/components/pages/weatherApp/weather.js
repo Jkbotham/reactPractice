@@ -5,6 +5,8 @@ import api from "../../../utils/api"
 import "./weather.css"
 import WeatherNow from "./weatherProps/now"
 import WeatherDaily from "./weatherProps/daily"
+
+
 function Weather() {
 
     //=====================================================
@@ -101,7 +103,7 @@ function Weather() {
                                             <WeatherDaily data={apiResponse} />
                                         </div>
                                         :
-                                        <p>No Weather to report</p>
+                                        <></>
                                     }
                                 </Col>
                             </Row>

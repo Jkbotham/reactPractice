@@ -1,13 +1,12 @@
 import React from "react";
 import "../weather.css";
 import { Row, Col, Card } from "react-bootstrap";
-import weatherFunction from "../weatherFunctions";
+import wx from "../weatherFunctions";
 
 function Daily({ data }) {
 
     return (
         <div>
-
             <Card className="text-center rounded Card">
                 <Card.Body>
                     <Row className="my-auto">
@@ -20,17 +19,17 @@ function Daily({ data }) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[0].weather[0].description} src={weatherFunction.weatherIcon(data.weather.daily[0].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[0].weather[0].description} src={wx.weatherIcon(data.weather.daily[0].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{weatherFunction.temperature(data.weather.daily[0].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[0].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    {weatherFunction.pop(data.weather.daily[0].pop)}
+                                    {wx.pop(data.weather.daily[0].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -38,22 +37,22 @@ function Daily({ data }) {
                         <Col>
                             <Row>
                                 <Col>
-                                    <strong>{weatherFunction.getDate(data.weather.daily[1].dt)}</strong>
+                                    <strong>{wx.getDate(data.weather.daily[1].dt)}</strong>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[1].weather[0].description} src={weatherFunction.weatherIcon(data.weather.daily[1].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[1].weather[0].description} src={wx.weatherIcon(data.weather.daily[1].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{weatherFunction.temperature(data.weather.daily[1].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[1].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    {weatherFunction.pop(data.weather.daily[1].pop)}
+                                    {wx.pop(data.weather.daily[1].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -61,22 +60,22 @@ function Daily({ data }) {
                         <Col>
                             <Row>
                                 <Col>
-                                    <strong>{weatherFunction.getDate(data.weather.daily[2].dt)}</strong>
+                                    <strong>{wx.getDate(data.weather.daily[2].dt)}</strong>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[2].weather[0].description} src={weatherFunction.weatherIcon(data.weather.daily[2].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[2].weather[0].description} src={wx.weatherIcon(data.weather.daily[2].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{weatherFunction.temperature(data.weather.daily[2].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[2].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    {weatherFunction.pop(data.weather.daily[2].pop)}
+                                    {wx.pop(data.weather.daily[2].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -84,22 +83,22 @@ function Daily({ data }) {
                         <Col>
                             <Row>
                                 <Col>
-                                    <strong>{weatherFunction.getDate(data.weather.daily[3].dt)}</strong>
+                                    <strong>{wx.getDate(data.weather.daily[3].dt)}</strong>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[3].weather[0].description} src={weatherFunction.weatherIcon(data.weather.daily[3].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[3].weather[0].description} src={wx.weatherIcon(data.weather.daily[3].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{weatherFunction.temperature(data.weather.daily[3].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[3].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    {weatherFunction.pop(data.weather.daily[3].pop)}
+                                    {wx.pop(data.weather.daily[3].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -107,26 +106,25 @@ function Daily({ data }) {
                         <Col>
                             <Row>
                                 <Col>
-                                    <strong>{weatherFunction.getDate(data.weather.daily[4].dt)}</strong>
+                                    <strong>{wx.getDate(data.weather.daily[4].dt)}</strong>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[3].weather[0].description} src={weatherFunction.weatherIcon(data.weather.daily[4].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[3].weather[0].description} src={wx.weatherIcon(data.weather.daily[4].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{weatherFunction.temperature(data.weather.daily[3].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[3].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    {weatherFunction.pop(data.weather.daily[4].pop)}
+                                    {wx.pop(data.weather.daily[4].pop)}
                                 </Col>
                             </Row>
                         </Col>
-
                     </Row>
                 </Card.Body>
             </Card>
