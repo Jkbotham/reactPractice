@@ -7,7 +7,6 @@ import WeatherNow from "./weatherProps/now"
 
 function Weather() {
 
-
     //=====================================================
     // States and Variables
     //=====================================================
@@ -17,13 +16,11 @@ function Weather() {
     const [lon, setLong] = useState();
     const [zipSearch, setZipSearch] = useState();
 
-
-
-
     //=====================================================
     // Functions
     //=====================================================
 
+    //Starts request for weather data using either the clients Lat & Lon or a zip code
     async function getWeather() {
         // Weather By Cords
         if (!zipSearch) {
@@ -39,6 +36,7 @@ function Weather() {
         }
     }
 
+    //Handles request when searching for weather using the search field
     const handleSubmit = e => {
         e.preventDefault();
         getWeather();
@@ -66,15 +64,6 @@ function Weather() {
         }
     }, [lon || lat])
 
-    useEffect(() => {
-        // console.log(apiResponse)
-        console.log(zipSearch)
-    }, [zipSearch])
-
-    useEffect(() => {
-
-    }, [apiResponse])
-
     //=====================================================
 
     //=====================================================
@@ -100,9 +89,7 @@ function Weather() {
                                         <div>
                                             <WeatherNow data={apiResponse} />
                                         </div>
-
                                         :
-
                                         <p>No Weather to report</p>
                                     }
                                 </Col>

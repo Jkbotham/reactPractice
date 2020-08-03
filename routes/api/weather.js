@@ -1,32 +1,34 @@
 const router = require("express").Router();
 const axios = require("axios");
-
-
 const weatherApi = process.env.WEATHER_API_KEY
-// const town = "Minneapolis"
 
 router.get("/city/:city", async (req, res) => {
 
     console.log("City being received ", req.params.city)
 
-        const town = req.params.city
-        const y = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + town + "&appid=" + weatherApi).catch(err => { console.log(err) })
+        const city = req.params.city
 
-        console.log(y.data)
-
-        res.json(y.data)
+        //API request for weather data based on requsted city
+        const response = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherApi).catch(err => { console.log(err) })
+        // console.log(y.data)
+        res.json(response.data)
 });
 
 router.get("/zipcode/:zipCode", async (req,res) =>{
     const zip = req.params.zipCode
 
+    //API request for weather data based on req zipcode
     const zipResponse = await axios.get("https://api.openweathermap.org/data/2.5/weather?zip="+ zip + "&units=imperial&appid=" + weatherApi).catch(err => { console.log(err) })
 
     const lon = zipResponse.data.coord.lon
     const lat = zipResponse.data.coord.lat
 
+    //API request getting weather data based on lat and lon of request
     const weatherResponse = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + weatherApi).catch(err => { console.log(err) })
+    //API request getting geocode information based on lat and lon of request
     const localData = await axios.get("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat + "&longitude=" + lon + "&localityLanguage=en")
+
+    //Responses from above API calls being declared as an object
     const response = {
         weather: weatherResponse.data,
         local: localData.data
@@ -40,8 +42,12 @@ router.get("/cords/:lat/:lon", async (req, res) => {
         const lon = req.params.lon
         const lat = req.params.lat
 
+        //API request getting weather data based on lat and lon of request
         const weatherResponse = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + weatherApi).catch(err => { console.log(err) })
+        //API request getting geocode information based on lat and lon of request
         const localData = await axios.get("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat + "&longitude=" + lon + "&localityLanguage=en")
+
+        //Responses from above API calls being declared as an object
         const response = {
             weather: weatherResponse.data,
             local: localData.data

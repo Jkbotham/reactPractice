@@ -1,6 +1,5 @@
 export default {
     windDirection: (wd) => {
-
         if (wd < 0 || wd > 360) { return }
 
         if (wd >= 0 && wd <= 11.25) { return "N"; }
@@ -36,7 +35,6 @@ export default {
         if (wd > 303.75 && wd <= 326.25) { return "NW"; }
 
         if (wd > 326.25 && wd <= 348.75) { return "NNW"; }
-
     },
     
     capitalize: (input) => {
