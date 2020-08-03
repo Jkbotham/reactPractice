@@ -1,3 +1,5 @@
+import React from "react";
+
 export default {
     windDirection: (wd) => {
         if (wd < 0 || wd > 360) { return }
@@ -36,7 +38,7 @@ export default {
 
         if (wd > 326.25 && wd <= 348.75) { return "NNW"; }
     },
-    
+
     capitalize: (input) => {
         const words = input.split(" ");
         const CapitalizedWords = [];
@@ -46,29 +48,34 @@ export default {
         return CapitalizedWords.join(" ");
     },
 
-    getTime : (time) => {
-        const dt = new Date(time*1000);
+    getTime: (time) => {
+        const dt = new Date(time * 1000);
         const hr = dt.getHours();
         const m = "0" + dt.getMinutes();
         const s = "0" + dt.getSeconds();
         const date = dt.getDate();
         return date + " " + hr + ":" + m.substr(-2) + ":" + s.substr(-2);
-        
-        },
-        getDate : (time) => {
-            const dt = new Date(time*1000);
-            return dt.toLocaleString("en-US", {weekday: "short"})
-        },
 
-        weatherIcon : (icon, size) => {
-            if(size === "large"){
-                return "http://openweathermap.org/img/wn/" + icon + "@4x.png"
-            }else {
-                return "http://openweathermap.org/img/wn/" + icon + "@2x.png"
-            }
-        },
+    },
+    getDate: (time) => {
+        const dt = new Date(time * 1000);
+        return dt.toLocaleString("en-US", { weekday: "short" })
+    },
 
-        temperature: (temp) =>{
-            return temp.toFixed() +"°"
+    weatherIcon: (icon, size) => {
+        if (size === "large") {
+            return "http://openweathermap.org/img/wn/" + icon + "@4x.png"
+        } else {
+            return "http://openweathermap.org/img/wn/" + icon + "@2x.png"
         }
+    },
+
+    temperature: (temp) => {
+        return temp.toFixed() + "°"
+    },
+
+    pop: (pop) => {
+        const percent = pop * 100 + "%"
+        return <p><i className="fas fa-tint"></i> {percent}</p>
+    }
 }

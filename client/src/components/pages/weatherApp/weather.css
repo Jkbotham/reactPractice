@@ -1,11 +1,15 @@
 .Card {
     border-radius: 20px !important;
-}
-.cardWidth {
     max-width: 850px;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px !important;
+    border-radius: 100px;
 }
+
 p {
     size: 100px;
+    margin: 0
 }
 
 .temp {
@@ -16,16 +20,25 @@ p {
 }
 
 .condition {
-    margin: 18px 0 0 0;
-    font-size: 1.7rem;
+    margin: 0px 0 0 0;
+    font-size: 1.2rem;
     font-weight: bold;
+}
+
+.feelsLike {
+    /* font-weight: bold; */
+    font-style: italic;
+    margin-top: 5px;
+    font-size: 1.2rem;
 }
 
 .city, .highLow {
     font-weight: bold;
     font-size: 1.7rem;
 }
-
+.city {
+    margin-bottom: 5px;
+}
 div.card-body{ 
     padding: 10px;
 }
@@ -34,6 +47,7 @@ div.card-body{
     width: auto;
     height: auto;
     max-height: 175px;
+    line-height: -95px;
 }
 
 .text-left {
@@ -53,4 +67,6 @@ div.card-body{
     margin: auto;
     padding-bottom: 5px;
 }
-
+.fa-tint {
+    color: #6699cc;
+}

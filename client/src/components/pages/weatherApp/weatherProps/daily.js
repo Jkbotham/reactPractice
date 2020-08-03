@@ -5,21 +5,10 @@ import weatherFunction from "../weatherFunctions";
 
 function Daily({ data }) {
 
-    //Weather ICON link
-    const weatherIcon = data ? "http://openweathermap.org/img/wn/" + data.weather.current.weather[0].icon + "@4x.png" : null
-
-    const style = {
-        card: {
-            width: "95%",
-            margin: "auto",
-            borderRadius: "100px"
-        }
-    }
-
     return (
         <div>
 
-            <Card style={style.card} className="text-center rounded Card cardWidth">
+            <Card className="text-center rounded Card">
                 <Card.Body>
                     <Row className="my-auto">
 
@@ -37,6 +26,11 @@ function Daily({ data }) {
                             <Row>
                                 <Col>
                                     <p>{weatherFunction.temperature(data.weather.daily[0].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {weatherFunction.pop(data.weather.daily[0].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -57,6 +51,11 @@ function Daily({ data }) {
                                     <p>{weatherFunction.temperature(data.weather.daily[1].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col>
+                                    {weatherFunction.pop(data.weather.daily[1].pop)}
+                                </Col>
+                            </Row>
                         </Col>
 
                         <Col>
@@ -73,6 +72,11 @@ function Daily({ data }) {
                             <Row>
                                 <Col>
                                     <p>{weatherFunction.temperature(data.weather.daily[2].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {weatherFunction.pop(data.weather.daily[2].pop)}
                                 </Col>
                             </Row>
                         </Col>
@@ -93,6 +97,11 @@ function Daily({ data }) {
                                     <p>{weatherFunction.temperature(data.weather.daily[3].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col>
+                                    {weatherFunction.pop(data.weather.daily[3].pop)}
+                                </Col>
+                            </Row>
                         </Col>
 
                         <Col>
@@ -109,6 +118,11 @@ function Daily({ data }) {
                             <Row>
                                 <Col>
                                     <p>{weatherFunction.temperature(data.weather.daily[3].temp.max)} / {weatherFunction.temperature(data.weather.daily[0].temp.min)}</p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {weatherFunction.pop(data.weather.daily[4].pop)}
                                 </Col>
                             </Row>
                         </Col>
