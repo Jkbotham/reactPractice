@@ -17,12 +17,15 @@ p {
 
 .condition {
     margin: 18px 0 0 0;
-
+    font-size: 1.7rem;
+    font-weight: bold;
 }
-.city, .condition, .highLow {
+
+.city, .highLow {
     font-weight: bold;
     font-size: 1.7rem;
 }
+
 div.card-body{ 
     padding: 10px;
 }
@@ -35,6 +38,7 @@ div.card-body{
 
 .text-left {
     text-align: left !important;
+    padding-left: 30px;
 }
 .text-center {
     text-align: center !important;
@@ -49,3 +53,4 @@ div.card-body{
     margin: auto;
     padding-bottom: 5px;
 }
+

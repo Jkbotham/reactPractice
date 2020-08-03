@@ -5,9 +5,6 @@ import weatherFunction from "../weatherFunctions";
 
 function Now ({data}) {
 
-    //Weather ICON link
-    const weatherIcon = data ? "http://openweathermap.org/img/wn/" + data.weather.current.weather[0].icon + "@4x.png" : null
-
     const style = {
         card: {
             width: "95%",
@@ -30,7 +27,7 @@ function Now ({data}) {
                     </Col>
 
                     <Col className="text-center">
-                        <img alt="Weather Icon" className="responsiveIMG" src={weatherIcon}></img>
+                        <img alt="Weather Icon" className="responsiveIMG" src={weatherFunction.weatherIcon(data.weather.current.weather[0].icon, "large")}></img>
                         <p className="highLow">{data.weather.daily[0].temp.max.toFixed()}° / {data.weather.daily[0].temp.min.toFixed()}°</p>
                     </Col>
 

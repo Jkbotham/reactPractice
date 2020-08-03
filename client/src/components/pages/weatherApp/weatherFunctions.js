@@ -53,5 +53,22 @@ export default {
         const s = "0" + dt.getSeconds();
         const date = dt.getDate();
         return date + " " + hr + ":" + m.substr(-2) + ":" + s.substr(-2);
+        
+        },
+        getDate : (time) => {
+            const dt = new Date(time*1000);
+            return dt.toLocaleString("en-US", {weekday: "short"})
+        },
+
+        weatherIcon : (icon, size) => {
+            if(size === "large"){
+                return "http://openweathermap.org/img/wn/" + icon + "@4x.png"
+            }else {
+                return "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+            }
+        },
+
+        temperature: (temp) =>{
+            return temp.toFixed() +"°"
         }
 }

@@ -4,7 +4,7 @@ import { Row, Button, Col, Container, Jumbotron, Card, Form, FormControl } from 
 import api from "../../../utils/api"
 import "./weather.css"
 import WeatherNow from "./weatherProps/now"
-
+import WeatherDaily from "./weatherProps/daily"
 function Weather() {
 
     //=====================================================
@@ -47,22 +47,22 @@ function Weather() {
     //=====================================================
 
 
-    useEffect( async () => {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                // console.log("Latitude is :", position.coords.latitude);
-                // console.log("Longitude is :", position.coords.longitude);
-                setLat(position.coords.latitude);
-                setLong(position.coords.longitude);
-            });
+    useEffect(() => {
+
+             async function cords () {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    // console.log("Latitude is :", position.coords.latitude);
+                    // console.log("Longitude is :", position.coords.longitude);
+                    setLat(position.coords.latitude);
+                    setLong(position.coords.longitude);
+                });
+            }
+            cords();
     }, [])
 
     useEffect(() => {
-        if (lon & lat) {
             getWeather();
-        } else {
-            return
-        }
-    }, [lon || lat])
+    }, [lon, lat])
 
     //=====================================================
 
@@ -88,6 +88,17 @@ function Weather() {
                                     {apiResponse ?
                                         <div>
                                             <WeatherNow data={apiResponse} />
+                                        </div>
+                                        :
+                                        <p>No Weather to report</p>
+                                    }
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {apiResponse ?
+                                        <div>
+                                            <WeatherDaily data={apiResponse} />
                                         </div>
                                         :
                                         <p>No Weather to report</p>
