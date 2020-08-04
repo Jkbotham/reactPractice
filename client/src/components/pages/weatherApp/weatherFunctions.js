@@ -54,7 +54,9 @@ export default {
         const m = "0" + dt.getMinutes();
         const s = "0" + dt.getSeconds();
         const date = dt.getDate();
-        return date + " " + hr + ":" + m.substr(-2) + ":" + s.substr(-2);
+        // return date + " " + hr + ":" + m.substr(-2) + ":" + s.substr(-2);
+
+        return dt.toLocaleString("en-us", {hour: "numeric"});
 
     },
     getDate: (time) => {
@@ -75,7 +77,6 @@ export default {
     },
 
     pop: (pop) => {
-        const percent = pop * 100 + "%"
-        return <p><i className="fas fa-tint"></i> {percent}</p>
-    }
-}
+        const percent = pop*100
+        return <p><i className="fas fa-tint"></i> {percent.toFixed()}%</p>
+    }}

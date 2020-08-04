@@ -47,7 +47,7 @@ function Daily({ data }) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{wx.temp(data.weather.daily[1].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[1].temp.max)} / {wx.temp(data.weather.daily[1].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
@@ -70,7 +70,7 @@ function Daily({ data }) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{wx.temp(data.weather.daily[2].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[2].temp.max)} / {wx.temp(data.weather.daily[2].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
@@ -93,7 +93,7 @@ function Daily({ data }) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{wx.temp(data.weather.daily[3].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[3].temp.max)} / {wx.temp(data.weather.daily[3].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>
@@ -111,12 +111,12 @@ function Daily({ data }) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <img alt={data.weather.daily[3].weather[0].description} src={wx.weatherIcon(data.weather.daily[4].weather[0].icon)}></img>
+                                    <img alt={data.weather.daily[4].weather[0].description} src={wx.weatherIcon(data.weather.daily[4].weather[0].icon)}></img>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <p>{wx.temp(data.weather.daily[3].temp.max)} / {wx.temp(data.weather.daily[0].temp.min)}</p>
+                                    <p>{wx.temp(data.weather.daily[4].temp.max)} / {wx.temp(data.weather.daily[4].temp.min)}</p>
                                 </Col>
                             </Row>
                             <Row>

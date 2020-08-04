@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../header/header";
-import { Row, Button, Col, Container, Jumbotron, Card, Form, FormControl } from "react-bootstrap";
+import { Row, Button, Col, Container, Jumbotron, Form, FormControl } from "react-bootstrap";
 import api from "../../../utils/api"
 import "./weather.css"
 import WeatherNow from "./weatherProps/now"
 import WeatherDaily from "./weatherProps/daily"
+import WeatherHourly from "./weatherProps/hourly"
 
 
 function Weather() {
@@ -107,30 +108,23 @@ function Weather() {
                                     }
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col>
+                                    {apiResponse ?
+                                        <div>
+                                            <WeatherHourly data={apiResponse} />
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+                                </Col>
+                            </Row>
                         </Jumbotron>
                     </Col>
                 </Row>
             </Container>
         </div>
     )
-
-    {/* <p>Feels Like: {weather.main.feels_like}°</p> */ }
-    {/* <p>Humidity: {weather.main.humidity}</p>s */ }
-    {/* <Row>
-                                                        <Col>
-                                                            <p> Wind </p>
-                                                            <p>{weatherFunction.windDirection(weather.wind.deg)} {weather.wind.speed} mph</p>
-                                                        </Col>
-                                                        {weather.wind.gust ?
-                                                            <Col>
-                                                                <p>Gusts</p>
-                                                                <p>{weather.wind.gust}</p>
-                                                            </Col>
-                                                            :
-                                                            <> </>
-                                                        }
-
-                                                    </Row> */}
 }
 
 export default Weather;

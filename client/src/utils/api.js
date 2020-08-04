@@ -1,5 +1,4 @@
 import axios from "axios";
-import weather from "../components/pages/weatherApp/weather";
 
 export default {
     weatherByCity: (city) => {

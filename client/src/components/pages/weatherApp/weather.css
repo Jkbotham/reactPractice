@@ -70,3 +70,8 @@ div.card-body{
 .fa-tint {
     color: #6699cc;
 }
+
+.hourlyImg {
+    text-align: left !important;
+    padding-left: 50px;
+}
