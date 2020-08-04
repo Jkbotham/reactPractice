@@ -1,6 +1,6 @@
 import React from "react";
 import "../weather.css";
-import { Row, Col, Card, Image } from "react-bootstrap";
+import { Row, Col, Card, Image, Accordion, Button } from "react-bootstrap";
 import wx from "../weatherFunctions";
 import "../weather.css"
 
@@ -27,15 +27,15 @@ function Daily({ data }) {
                 <Col style={style.col} xs={2}>
                     <span>{wx.getTime(obj.dt)}</span>
                 </Col>
-                <Col style={style.col} xs={1}>
+                <Col style={style.col} xs={2}>
                     <p>{wx.temp(obj.temp)}</p>
                 </Col>
                 <Col style={style.col} className="hourlyImg">
-                    <Image 
-                    fluid style={style.img} 
-                    src={wx.weatherIcon(obj.weather[0].icon)} 
-                    alt={wx.capitalize(obj.weather[0].description)} 
-                    /> 
+                    <Image
+                        fluid style={style.img}
+                        src={wx.weatherIcon(obj.weather[0].icon)}
+                        alt={wx.capitalize(obj.weather[0].description)}
+                    />
                     {wx.capitalize(obj.weather[0].description)}
                 </Col>
                 <Col style={style.col} xs={2}>
@@ -55,9 +55,22 @@ function Daily({ data }) {
                     <Row className="my-auto">
                         <Col>
 
-                            {data.weather.hourly.map(results => {
+                            {data.weather.hourly.map((results, index) => {
+                                // console.log(index)
                                 return hourly(results)
                             })}
+
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col>
+                            <Accordion>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0">Expand</Accordion.Toggle>
+                                <Accordion.Collapse eventKey="0">
+                                    <p>Hello! I'm the body</p>
+                                </Accordion.Collapse>
+                            </Accordion>
 
                         </Col>
                     </Row>

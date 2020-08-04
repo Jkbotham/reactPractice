@@ -75,3 +75,14 @@ div.card-body{
     text-align: left !important;
     padding-left: 50px;
 }
+
+/* @media screen and (max-width: 1px){
+    .jumbotron {
+        padding: 0;
+        width: 100%;
+
+    }
+    .col {
+        width: 100%;
+    }
+} */
