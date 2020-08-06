@@ -1,79 +1,80 @@
 .Card {
-    border-radius: 20px !important;
-    max-width: 850px;
-    width: 95%;
-    margin: auto;
-    margin-top: 10px !important;
-    border-radius: 100px;
+  border-radius: 20px !important;
+  max-width: 850px;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px !important;
+  border-radius: 100px;
 }
 
 p {
-    size: 100px;
-    margin: 0
+  size: 100px;
+  margin: 0;
 }
 
 .temp {
-    font-size: 8rem;
-    font-weight: 500;
-    margin-top: 0rem;
-    line-height: 95px;
+  font-size: 8rem;
+  font-weight: 500;
+  margin-top: 0rem;
+  line-height: 95px;
 }
 
 .condition {
-    margin: 0px 0 0 0;
-    font-size: 1.2rem;
-    font-weight: bold;
+  margin: 0px 0 0 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .feelsLike {
-    /* font-weight: bold; */
-    font-style: italic;
-    margin-top: 5px;
-    font-size: 1.2rem;
+  /* font-weight: bold; */
+  font-style: italic;
+  margin-top: 5px;
+  font-size: 1.2rem;
 }
 
-.city, .highLow {
-    font-weight: bold;
-    font-size: 1.7rem;
+.city,
+.highLow {
+  font-weight: bold;
+  font-size: 1.7rem;
 }
 .city {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
-div.card-body{ 
-    padding: 10px;
+div.card-body {
+  padding: 10px;
 }
 
 .responsiveIMG {
-    width: auto;
-    height: auto;
-    max-height: 175px;
-    line-height: -95px;
+  width: auto;
+  height: auto;
+  max-height: 175px;
+  line-height: -95px;
 }
 
 .text-left {
-    text-align: left !important;
-    padding-left: 30px;
+  text-align: left !important;
+  padding-left: 30px;
 }
 .text-center {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 .text-right {
-    float: right;
+  float: right;
 }
 
 .searchBarCol {
-    max-width: 875px;
-    margin: auto;
-    padding-bottom: 5px;
+  max-width: 875px;
+  margin: auto;
+  padding-bottom: 5px;
 }
 .fa-tint {
-    color: #6699cc;
+  color: #6699cc;
 }
 
 .hourlyImg {
-    text-align: left !important;
-    padding-left: 50px;
+  text-align: left !important;
+  padding-left: 50px;
 }
 
 /* @media screen and (max-width: 1px){
