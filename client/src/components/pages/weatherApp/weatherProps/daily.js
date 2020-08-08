@@ -11,7 +11,6 @@ function Daily({ data }) {
     }
 
     if (index < 5) {
-      console.log(index);
       return (
         <Col key={index}>
           <Row>
@@ -24,18 +23,19 @@ function Daily({ data }) {
               <img
                 alt={obj.weather[0].description}
                 src={wx.weatherIcon(obj.weather[0].icon)}
+                className="dailyImg"
               ></img>
             </Col>
           </Row>
           <Row>
             <Col>
-              <p>
+              <p className="dailyText">
                 {wx.temp(obj.temp.max)} / {wx.temp(obj.temp.min)}
               </p>
             </Col>
           </Row>
           <Row>
-            <Col>{wx.pop(obj.pop)}</Col>
+            <Col className="dailyText">{wx.pop(obj.pop)}</Col>
           </Row>
         </Col>
       );
@@ -43,10 +43,10 @@ function Daily({ data }) {
   }
 
   return (
-    <div>
+    <div id="daily">
       <Card className="text-center rounded Card">
-        <Card.Body>
-          <Row className="my-auto">
+        <Card.Body id="dailyCard">
+          <Row className="my-auto overflow">
             {data.weather.daily.map((obj, index) => {
               return DailyWeather(obj, index);
             })}

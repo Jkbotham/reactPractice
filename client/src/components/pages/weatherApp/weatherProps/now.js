@@ -9,7 +9,7 @@ function Now({ data }) {
       <Card className="text-center rounded Card">
         <Card.Body>
           <Row className="my-auto">
-            <Col className="text-left">
+            <Col className="textNow">
               <p className="city">
                 {data.local.city},{" "}
                 {data.local.principalSubdivisionCode.split("-")[1]}{" "}
