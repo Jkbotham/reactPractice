@@ -8,11 +8,14 @@ function Daily({ data }) {
   const [expand, setExpand] = useState("Show More");
 
   function handleClick() {
-    if (expand === "Show More") {
-      setExpand("Show Less");
-    } else {
-      setExpand("Show More");
-    }
+    // if (expand === "Show More") {
+    //   setExpand("Show Less");
+    // } else {
+    //   setExpand("Show More");
+    // }
+
+    expand === "Show More" ? setExpand("Show Less") : setExpand("Show More");
+
     document.getElementById("daily").scrollIntoView({ behavior: "smooth" });
   }
 

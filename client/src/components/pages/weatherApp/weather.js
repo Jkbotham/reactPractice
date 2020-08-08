@@ -14,6 +14,7 @@ import "./weather.css";
 import WeatherNow from "./weatherProps/now";
 import WeatherDaily from "./weatherProps/daily";
 import WeatherHourly from "./weatherProps/hourly";
+import LocationHeader from "./weatherProps/locationHeader";
 
 function Weather() {
   //=====================================================
@@ -24,6 +25,12 @@ function Weather() {
   const [lat, setLat] = useState();
   const [lon, setLong] = useState();
   const [zipSearch, setZipSearch] = useState();
+  const [locationArray, setLocationArray] = useState([
+    "55391",
+    "55454",
+    "55555",
+  ]);
+  const [currentLocation, setCurrentLocation] = useState();
 
   //=====================================================
   // Functions
@@ -32,15 +39,16 @@ function Weather() {
   //Starts request for weather data using either the clients Lat & Lon or a zip code
   async function getWeather() {
     // Weather By Cords
-    if (!zipSearch) {
+    // console.log(zipSearch);
+    if (!currentLocation) {
       if (lon && lat) {
         const weatherByCords = await api.weatherByCords(lat, lon);
         console.log("Weather by Cords ", weatherByCords.data);
         setApiResponse(weatherByCords.data);
       }
     } else {
-      const weatherByZip = await api.weatherByZip(zipSearch);
-      console.log(weatherByZip);
+      const weatherByZip = await api.weatherByZip(currentLocation);
+      // console.log(weatherByZip);
       setApiResponse(weatherByZip.data);
     }
   }
@@ -48,28 +56,40 @@ function Weather() {
   //Handles request when searching for weather using the search field
   const handleSubmit = (e) => {
     e.preventDefault();
-    getWeather();
+    setCurrentLocation(zipSearch);
+    setLocationArray((locationArray) => [...locationArray, zipSearch]);
   };
+
+  useEffect(() => {
+    // console.log(currentLocation);
+    setZipSearch(currentLocation);
+    getWeather();
+  }, [currentLocation]);
 
   //=====================================================
   //  Use Effects
   //=====================================================
 
   useEffect(() => {
-    async function cords() {
+    const cords = async () => {
       navigator.geolocation.getCurrentPosition(function (position) {
         // console.log("Latitude is :", position.coords.latitude);
         // console.log("Longitude is :", position.coords.longitude);
         setLat(position.coords.latitude);
         setLong(position.coords.longitude);
       });
-    }
+    };
     cords();
   }, []);
 
   useEffect(() => {
+    console.log(currentLocation, "if lat or lon and !currentLocation");
     getWeather();
   }, [lon, lat]);
+
+  const handleLocationRemove = (zip) => {
+    setLocationArray(locationArray.filiter((item) => item !== zip));
+  };
 
   //=====================================================
 
@@ -95,8 +115,17 @@ function Weather() {
                       placeholder="Zip Code"
                       className=" mr-sm-2"
                     />
-                    <Button type="submit">Submit</Button>
+                    {/* <Button type="submit">Submit</Button> */}
                   </Form>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <LocationHeader
+                    data={locationArray}
+                    handleRemove={handleLocationRemove}
+                    setCurrentLocation={setCurrentLocation}
+                  />
                 </Col>
               </Row>
               <Row>
