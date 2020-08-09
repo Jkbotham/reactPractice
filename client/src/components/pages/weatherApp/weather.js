@@ -25,11 +25,7 @@ function Weather() {
   const [lat, setLat] = useState();
   const [lon, setLong] = useState();
   const [zipSearch, setZipSearch] = useState();
-  const [locationArray, setLocationArray] = useState([
-    "55391",
-    "55454",
-    "55555",
-  ]);
+  const [locationArray, setLocationArray] = useState([]);
   const [currentLocation, setCurrentLocation] = useState();
 
   //=====================================================
