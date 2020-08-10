@@ -25,7 +25,9 @@ function Weather() {
   const [lat, setLat] = useState();
   const [lon, setLong] = useState();
   const [zipSearch, setZipSearch] = useState();
-  const [locationArray, setLocationArray] = useState([]);
+  const [locationArray, setLocationArray] = useState(
+    JSON.parse(localStorage.getItem("weatherLocations")) || []
+  );
   const [currentLocation, setCurrentLocation] = useState();
 
   //=====================================================
@@ -33,34 +35,72 @@ function Weather() {
   //=====================================================
 
   //Starts request for weather data using either the clients Lat & Lon or a zip code
-  async function getWeather() {
+  const getWeather = async () => {
     // Weather By Cords
-    // console.log(zipSearch);
     if (!currentLocation) {
       if (lon && lat) {
         const weatherByCords = await api.weatherByCords(lat, lon);
         console.log("Weather by Cords ", weatherByCords.data);
         setApiResponse(weatherByCords.data);
+
+        const locationInfo = {
+          displayName:
+            weatherByCords.data.local.city +
+            ", " +
+            weatherByCords.data.local.principalSubdivisionCode.split("-")[1],
+          zipCode: weatherByCords.data.local.postcode,
+        };
+
+        if (
+          !locationArray.some((obj) => obj.zipCode === locationInfo.zipCode)
+        ) {
+          setLocationArray((locationArray) => [...locationArray, locationInfo]);
+        }
       }
     } else {
-      const weatherByZip = await api.weatherByZip(currentLocation);
-      // console.log(weatherByZip);
-      setApiResponse(weatherByZip.data);
+      const weatherByZip = await api
+        .weatherByZip(currentLocation)
+        .catch((err) => {
+          console.log(err.response);
+          return err;
+        });
+
+      if (weatherByZip.data) {
+        console.log("Weather by zip", weatherByZip.data);
+        setApiResponse(weatherByZip.data);
+
+        const locationInfo = {
+          displayName:
+            weatherByZip.data.local.city +
+            ", " +
+            weatherByZip.data.local.principalSubdivisionCode.split("-")[1],
+          zipCode: weatherByZip.data.local.postcode,
+        };
+
+        if (
+          !locationArray.some((obj) => obj.zipCode === locationInfo.zipCode)
+        ) {
+          setLocationArray((locationArray) => [...locationArray, locationInfo]);
+        }
+      }
     }
-  }
+  };
 
   //Handles request when searching for weather using the search field
   const handleSubmit = (e) => {
     e.preventDefault();
     setCurrentLocation(zipSearch);
-    setLocationArray((locationArray) => [...locationArray, zipSearch]);
+    // setLocationArray((locationArray) => [...locationArray, zipSearch]);
   };
 
-  useEffect(() => {
-    // console.log(currentLocation);
-    setZipSearch(currentLocation);
-    getWeather();
-  }, [currentLocation]);
+  const handleLocationRemove = (e) => {
+    // console.log(e.currentTarget.dataset.zip);
+    const zip = e.currentTarget.dataset.zip;
+    setLocationArray(locationArray.filter((item) => item.zipCode !== zip));
+    if (currentLocation === zip && locationArray.length > 0) {
+      setCurrentLocation(locationArray[0].zipCode);
+    }
+  };
 
   //=====================================================
   //  Use Effects
@@ -79,13 +119,18 @@ function Weather() {
   }, []);
 
   useEffect(() => {
-    console.log(currentLocation, "if lat or lon and !currentLocation");
     getWeather();
   }, [lon, lat]);
 
-  const handleLocationRemove = (zip) => {
-    setLocationArray(locationArray.filiter((item) => item !== zip));
-  };
+  useEffect(() => {
+    // console.log(currentLocation);
+    setZipSearch(currentLocation);
+    getWeather();
+  }, [currentLocation]);
+
+  useEffect(() => {
+    localStorage.setItem("weatherLocations", JSON.stringify(locationArray));
+  }, [locationArray]);
 
   //=====================================================
 
@@ -117,11 +162,15 @@ function Weather() {
               </Row>
               <Row>
                 <Col>
-                  <LocationHeader
-                    data={locationArray}
-                    handleRemove={handleLocationRemove}
-                    setCurrentLocation={setCurrentLocation}
-                  />
+                  {locationArray.length > 0 ? (
+                    <LocationHeader
+                      data={locationArray}
+                      handleRemove={handleLocationRemove}
+                      setCurrentLocation={setCurrentLocation}
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </Col>
               </Row>
               <Row>

@@ -34,9 +34,16 @@ router.get("/zipcode/:zipCode", async (req, res) => {
         weatherApi
     )
     .catch((err) => {
-      console.log(err);
+      console.log(err.response.data);
+      res.status(err.response.data.cod).json(err.response.data);
+      return err;
     });
 
+  if (zipResponse.response) {
+    // res.json(zipResponse.response.data);
+    return;
+  }
+  // console.log(zipResponse.data);
   const lon = zipResponse.data.coord.lon;
   const lat = zipResponse.data.coord.lat;
 

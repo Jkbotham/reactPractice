@@ -130,6 +130,30 @@ div.card-body {
   }
 }
 
+.zipTabText {
+  display: inline;
+}
+
+.zipTab {
+  /* margin: auto; */
+  cursor: pointer;
+  padding: 1rem;
+  margin: 0;
+  border: 10rem;
+}
+
+.zipTab div:hover {
+  border-color: orange;
+  border: 10rem;
+  border-style: soild;
+}
+
+.cardTabs {
+  margin: 0;
+  /* border-bottom: 0; */
+  border-radius: 10rem;
+}
+
 @media screen and (max-width: 449px) {
   .hourlyCol {
     font-size: 0.6em;

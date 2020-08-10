@@ -10,13 +10,22 @@ function LocationHeader({ data, setCurrentLocation, handleRemove }) {
     setCurrentLocation(e);
   };
 
-  const tab = (zip, index) => {
+  const tab = (obj, index) => {
     return (
-      <Nav.Item key={index}>
-        <Nav.Link href="#" onClick={() => handleOnClick(zip)}>
-          {zip}
-        </Nav.Link>
-      </Nav.Item>
+      <div className="zipTab" key={index}>
+        <a
+          className="zipTabText"
+          href="#"
+          onClick={() => handleOnClick(obj.zipCode)}
+        >
+          {obj.displayName}{" "}
+        </a>
+        <i
+          className="fas fa-times"
+          onClick={handleRemove}
+          data-zip={obj.zipCode}
+        ></i>
+      </div>
     );
   };
 
@@ -25,7 +34,8 @@ function LocationHeader({ data, setCurrentLocation, handleRemove }) {
       <Card.Body>
         <Row className="navRow">
           <Col className="navCol">
-            <Nav variant="tabs" defaultActiveKey="/home">
+            <Nav variant="tabs" className="cardTabs" defaultActiveKey="/home">
+              {/* {console.log(data)} */}
               {data.map((results, index) => {
                 return tab(results, index);
               })}
