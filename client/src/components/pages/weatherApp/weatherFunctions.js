@@ -83,9 +83,9 @@ export default {
 
   weatherIcon: (icon, size) => {
     if (size === "large") {
-      return "http://openweathermap.org/img/wn/" + icon + "@4x.png";
+      return "https://openweathermap.org/img/wn/" + icon + "@4x.png";
     } else {
-      return "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+      return "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     }
   },
 
