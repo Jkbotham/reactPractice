@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../weather.css";
-import { Row, Col, Card, Image, Accordion, Button, Nav } from "react-bootstrap";
-import wx from "../weatherFunctions";
+import { Row, Col, Card, Nav } from "react-bootstrap";
 import "../weather.css";
 
 function LocationHeader({ data, setCurrentLocation, handleRemove }) {

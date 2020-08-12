@@ -89,8 +89,9 @@ function Weather() {
   //Handles request when searching for weather using the search field
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(e.currentTarget.children[0].value);
+    e.currentTarget.children[0].value = "";
     setCurrentLocation(zipSearch);
-    // setLocationArray((locationArray) => [...locationArray, zipSearch]);
   };
 
   const handleLocationRemove = (e) => {
@@ -156,7 +157,9 @@ function Weather() {
                       placeholder="Zip Code"
                       className=" mr-sm-2"
                     />
-                    {/* <Button type="submit">Submit</Button> */}
+                    <Button type="submit">
+                      <i className="fas fa-search"></i>
+                    </Button>
                   </Form>
                 </Col>
               </Row>
