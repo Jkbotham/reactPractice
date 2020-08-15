@@ -19,7 +19,7 @@ function mainPage() {
             <Jumbotron>
               <Row>
                 <Col>
-                  <Card>
+                  <Card className="appCard">
                     <Card.Link href="/weatherApp">
                       <Card.Img
                         variant="bottom"
