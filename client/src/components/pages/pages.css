@@ -1,3 +1,21 @@
 .exerciseCard {
   width: 2000px;
 }
+
+.mainPageImgLink {
+  margin: auto;
+  padding: 0;
+}
+
+.mainPageImg {
+  max-width: 300px;
+  margin: auto;
+}
+
+a.card-link {
+  margin: auto;
+}
+
+div.card {
+  width: 350px;
+}

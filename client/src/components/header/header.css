@@ -9,3 +9,9 @@
   padding: 28px;
   border-radius: 25px;
 }
+
+#basic-navbar-nav {
+  margin: auto !important;
+  width: 100%;
+  text-align: center;
+}
