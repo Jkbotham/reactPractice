@@ -143,73 +143,71 @@ function Weather() {
       <Container>
         <Row>
           <Col>
-            <Jumbotron fluid>
-              <Row>
-                <Col className="searchBarCol">
-                  <Form
-                    inline
-                    className="text-right"
-                    onSubmit={(e) => handleSubmit(e)}
-                  >
-                    <FormControl
-                      onChange={(e) => setZipSearch(e.target.value)}
-                      type="text"
-                      placeholder="Zip Code"
-                      className=" mr-sm-2"
-                    />
-                    <Button type="submit">
-                      <i className="fas fa-search"></i>
-                    </Button>
-                  </Form>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  {locationArray.length > 0 ? (
-                    <LocationHeader
-                      data={locationArray}
-                      handleRemove={handleLocationRemove}
-                      setCurrentLocation={setCurrentLocation}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  {apiResponse ? (
-                    <div>
-                      <WeatherNow data={apiResponse} />
-                    </div>
-                  ) : (
-                    <p>No Weather to report</p>
-                  )}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  {apiResponse ? (
-                    <div>
-                      <WeatherDaily data={apiResponse} />
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  {apiResponse ? (
-                    <div>
-                      <WeatherHourly data={apiResponse} />
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </Col>
-              </Row>
-            </Jumbotron>
+            <Row>
+              <Col className="searchBarCol">
+                <Form
+                  inline
+                  className="text-right"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
+                  <FormControl
+                    onChange={(e) => setZipSearch(e.target.value)}
+                    type="text"
+                    placeholder="Zip Code"
+                    className=" mr-sm-2"
+                  />
+                  <Button type="submit">
+                    <i className="fas fa-search"></i>
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {locationArray.length > 0 ? (
+                  <LocationHeader
+                    data={locationArray}
+                    handleRemove={handleLocationRemove}
+                    setCurrentLocation={setCurrentLocation}
+                  />
+                ) : (
+                  <></>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {apiResponse ? (
+                  <div>
+                    <WeatherNow data={apiResponse} />
+                  </div>
+                ) : (
+                  <p>No Weather to report</p>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {apiResponse ? (
+                  <div>
+                    <WeatherDaily data={apiResponse} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {apiResponse ? (
+                  <div>
+                    <WeatherHourly data={apiResponse} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

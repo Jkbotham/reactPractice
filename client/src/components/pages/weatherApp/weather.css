@@ -138,19 +138,19 @@ div.card-body {
   /* margin: auto; */
   cursor: pointer;
   padding: 1rem;
-  margin: 0;
-  border: 10rem;
+  margin: 2px;
+  border: 5px solid;
+  border-color: slategray;
+  border-radius: 10rem;
 }
 
-.zipTab div:hover {
-  border-color: orange;
-  border: 10rem;
+.cardTabs .zipTab:hover {
+  background-color: slategray;
   border-style: soild;
 }
 
 .cardTabs {
   margin: 0;
-  /* border-bottom: 0; */
   border-radius: 10rem;
 }
 
