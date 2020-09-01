@@ -6,9 +6,13 @@ import "../weather.css";
 
 function Daily({ data }) {
   const [expand, setExpand] = useState("Show More");
+  const [arrow, setArrow] = useState("fas fa-angle-double-down");
 
   function handleClick() {
     expand === "Show More" ? setExpand("Show Less") : setExpand("Show More");
+    arrow === "fas fa-angle-double-down"
+      ? setArrow("fas fa-angle-double-up")
+      : setArrow("fas fa-angle-double-down");
 
     document.getElementById("daily").scrollIntoView({ behavior: "smooth" });
   }
@@ -89,7 +93,7 @@ function Daily({ data }) {
                   eventKey="0"
                   onClick={handleClick}
                 >
-                  {expand}
+                  {expand} <i class={arrow}></i>
                 </Accordion.Toggle>
               </Accordion>
             </Col>
