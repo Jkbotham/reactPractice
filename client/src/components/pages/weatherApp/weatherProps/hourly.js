@@ -93,7 +93,7 @@ function Daily({ data }) {
                   eventKey="0"
                   onClick={handleClick}
                 >
-                  {expand} <i class={arrow}></i>
+                  {expand} <i className={arrow}></i>
                 </Accordion.Toggle>
               </Accordion>
             </Col>
