@@ -11,12 +11,12 @@ function mainPage() {
       <Container>
         <Row>
           <Col>
-            <h1> Home Page </h1>
+            {/* <h1> Home Page </h1> */}
           </Col>
         </Row>
         <Row>
           <Col>
-            <Jumbotron>
+            {/* <Jumbotron> */}
               <Row>
                 <Col>
                   <Card className="appCard">
@@ -41,7 +41,7 @@ function mainPage() {
                   </Card>
                 </Col>
               </Row>
-            </Jumbotron>
+            {/* </Jumbotron> */}
           </Col>
         </Row>
       </Container>
