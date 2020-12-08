@@ -13,4 +13,4 @@ Future developments will include:
 - Web Store
 - Interactive Journal
 
-<img width="720" alt="weatherApp" src="client/src/assets/images/weatherApp.png">
+[![weather](client/src/assets/images/weatherApp.png)](https://jbotham-react.herokuapp.com/)
