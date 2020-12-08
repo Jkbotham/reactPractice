@@ -14,5 +14,3 @@ Future developments will include:
 - Interactive Journal
 
 <img width="720" alt="weatherApp" src="client/src/assets/images/weatherApp.png">
-
----
