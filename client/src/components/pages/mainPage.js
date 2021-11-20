@@ -28,16 +28,18 @@ function mainPage() {
                       />
                       <Card.Title>Weather App</Card.Title>
                     </Card.Link>
-
-                    {/* <p>Weather App</p>
-                    <a href="/weatherApp" className="mainPageImgLink">
-                      <Image
+                  </Card>
+                </Col>
+                <Col>
+                  <Card className="appCard">
+                    <Card.Link href="/tipCalculator">
+                      <Card.Img
+                        variant="bottom"
                         className="mainPageImg"
-                        alt="Screenshot of weather app page"
                         src={imgWeatherApp}
-                        href="/weatherApp"
-                      ></Image>
-                    </a> */}
+                      />
+                      <Card.Title>Tip Calculator</Card.Title>
+                    </Card.Link>
                   </Card>
                 </Col>
               </Row>

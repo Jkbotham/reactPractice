@@ -45,10 +45,10 @@ function Weather() {
 
         const locationInfo = {
           displayName:
-            weatherByCords.data.local.city +
+            weatherByCords.data.local.locality +
             ", " +
-            weatherByCords.data.local.principalSubdivisionCode.split("-")[1],
-          zipCode: weatherByCords.data.local.postcode,
+            weatherByCords.data.local.region_code,
+          zipCode: weatherByCords.data.local.postal_code,
         };
 
         if (
@@ -71,10 +71,10 @@ function Weather() {
 
         const locationInfo = {
           displayName:
-            weatherByZip.data.local.city +
+            weatherByZip.data.local.locality +
             ", " +
-            weatherByZip.data.local.principalSubdivisionCode.split("-")[1],
-          zipCode: weatherByZip.data.local.postcode,
+            weatherByZip.data.local.region_code,
+          zipCode: weatherByZip.data.local.postal_code,
         };
 
         if (
@@ -95,7 +95,7 @@ function Weather() {
   };
 
   const handleLocationRemove = (e) => {
-    // console.log(e.currentTarget.dataset.zip);
+    console.log(e.currentTarget.dataset.zip);
     const zip = e.currentTarget.dataset.zip;
     setLocationArray(locationArray.filter((item) => item.zipCode !== zip));
     if (currentLocation === zip && locationArray.length > 0) {

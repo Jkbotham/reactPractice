@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const weatherApi = process.env.WEATHER_API_KEY;
+const reverseGeoApi = process.env.REVERSE_API_KEY;
 
 router.get("/city/:city", async (req, res) => {
   console.log("City being received ", req.params.city);
@@ -11,16 +12,19 @@ router.get("/city/:city", async (req, res) => {
   const response = await axios
     .get(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
-        "&appid=" +
-        weatherApi
+      city +
+      "&appid=" +
+      weatherApi
     )
     .catch((err) => {
+      console.log("Here line 19")
       console.log(err);
     });
-  // console.log(y.data)
+  console.log(y.data)
   res.json(response.data);
 });
+
+// ===============================================================================
 
 router.get("/zipcode/:zipCode", async (req, res) => {
   const zip = req.params.zipCode;
@@ -29,9 +33,9 @@ router.get("/zipcode/:zipCode", async (req, res) => {
   const zipResponse = await axios
     .get(
       "https://api.openweathermap.org/data/2.5/weather?zip=" +
-        zip +
-        "&units=imperial&appid=" +
-        weatherApi
+      zip +
+      "&units=imperial&appid=" +
+      weatherApi
     )
     .catch((err) => {
       console.log(err.response.data);
@@ -51,31 +55,33 @@ router.get("/zipcode/:zipCode", async (req, res) => {
   const weatherResponse = await axios
     .get(
       "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-        lat +
-        "&lon=" +
-        lon +
-        "&units=imperial" +
-        "&appid=" +
-        weatherApi
+      lat +
+      "&lon=" +
+      lon +
+      "&units=imperial" +
+      "&appid=" +
+      weatherApi
     )
     .catch((err) => {
+      console.log("is it here")
       console.log(err);
     });
   //API request getting geocode information based on lat and lon of request
   const localData = await axios.get(
-    "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" +
-      lat +
-      "&longitude=" +
-      lon +
-      "&localityLanguage=en"
+    "http://api.positionstack.com/v1/reverse?access_key=" +
+    reverseGeoApi +
+    "&query=" +
+    lat +
+    "," +
+    lon
   );
 
   //Responses from above API calls being declared as an object
   const response = {
     weather: weatherResponse.data,
-    local: localData.data,
+    local: localData.data.data[0],
   };
-  // console.log(zipResponse.data, oneCall.data)
+  // console.log(zipResponse.data, response, weatherResponse)
   res.json(response);
 });
 
@@ -87,29 +93,31 @@ router.get("/cords/:lat/:lon", async (req, res) => {
   const weatherResponse = await axios
     .get(
       "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-        lat +
-        "&lon=" +
-        lon +
-        "&units=imperial" +
-        "&appid=" +
-        weatherApi
+      lat +
+      "&lon=" +
+      lon +
+      "&units=imperial" +
+      "&appid=" +
+      weatherApi
     )
     .catch((err) => {
+      console.log("is it here")
       console.log(err);
     });
   //API request getting geocode information based on lat and lon of request
   const localData = await axios.get(
-    "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" +
-      lat +
-      "&longitude=" +
-      lon +
-      "&localityLanguage=en"
+    "http://api.positionstack.com/v1/reverse?access_key=" +
+    reverseGeoApi +
+    "&query=" +
+    lat +
+    "," +
+    lon
   );
 
   //Responses from above API calls being declared as an object
   const response = {
     weather: weatherResponse.data,
-    local: localData.data,
+    local: localData.data.data[0],
   };
   // console.log(response)
   res.json(response);

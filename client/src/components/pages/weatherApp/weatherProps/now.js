@@ -11,8 +11,8 @@ function Now({ data }) {
           <Row className="my-auto">
             <Col className="textNow">
               <p className="city">
-                {data.local.city},{" "}
-                {data.local.principalSubdivisionCode.split("-")[1]}{" "}
+                {data.local.locality},{" "}
+                {data.local.region_code}
               </p>
               <p className="condition">
                 {wx.capitalize(data.weather.current.weather[0].description)}{" "}
