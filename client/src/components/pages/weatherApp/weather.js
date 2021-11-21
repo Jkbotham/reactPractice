@@ -170,7 +170,8 @@ function Weather() {
                   setCurrentLocation={setCurrentLocation}
                 />
               ) : (
-                <></>
+                <div>
+                  </div>
               )}
             </Col>
           </Row>
@@ -192,7 +193,8 @@ function Weather() {
                   <WeatherDaily data={apiResponse} />
                 </div>
               ) : (
-                <></>
+                <div>
+                  </div>
               )}
             </Col>
           </Row>
@@ -203,7 +205,8 @@ function Weather() {
                   <WeatherHourly data={apiResponse} />
                 </div>
               ) : (
-                <></>
+                <div>
+                  </div>
               )}
             </Col>
           </Row>

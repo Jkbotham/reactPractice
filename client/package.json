@@ -11,7 +11,8 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
-    "react-moment": "^0.9.7"
+    "react-moment": "^0.9.7",
+    "react-scripts": "4.0.3"
   },
   "proxy": "http://localhost:3001/",
   "scripts": {
@@ -26,7 +27,6 @@
   "browserslist": {
     "production": [
       ">0.2%",
-      "not dead",
       "not op_mini all"
     ],
     "development": [
@@ -34,8 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "react-scripts": "^0.9.5"
   }
 }

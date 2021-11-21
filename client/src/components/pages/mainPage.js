@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container, Jumbotron, Card, Image } from "react-bootstrap";
+import { Row, Col, Container, Card } from "react-bootstrap";
 import "./pages.css";
 import Header from "../header/header";
 import imgWeatherApp from "../../assets/images/weatherApp.png";
